@@ -1,9 +1,9 @@
-# web3auth
+# web3id
 `web3id` is a simple and easy-to-use software development toolkit based on blockchain technology that integrates the creation of web3 signer, data signature, and signature verification.
 
 ## How it works
 1. Sign the data with the wallet's private key, and you will get a signature string.
-2. The wallet address will be included in the data packet. When verifying the signature, you need to enter the wallet address and signature. Web3id will verify whether the signature of the data package is signed by the private key of the owner of the wallet address.
+2. The wallet address will be included in the data packet. When verifying the signature, you need to enter the wallet address and signature. `web3id` will verify whether the signature of the data package is signed by the private key of the owner of the wallet address.
 
 
 ## Create a signer
