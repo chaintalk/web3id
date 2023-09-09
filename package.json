@@ -1,6 +1,6 @@
 {
 	"name": "web3id",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "User identification system based on web3 technology",
 	"leadMaintainer": "Chain Talk, Team.",
 	"main": "dist/index.js",
@@ -31,7 +31,7 @@
 		"lodash": "^4.17.21"
 	},
 	"author": "ChainTalk, Team.",
-	"homepage": "https://github.com/chaintalk/",
+	"homepage": "https://github.com/chaintalk/web3id",
 	"contributors": [
 		"Chain Talk, Team. <chaintalk@outlook.com>"
 	]
