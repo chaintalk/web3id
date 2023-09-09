@@ -11,7 +11,7 @@ The signer is based on the wallet, so creating a signer is creating a wallet. Th
 
 1. Create an HD wallet automatically
 ```typescript
-const walletObj = new WalletFactory().createWalletFromMnemonic();
+const walletObj = EtherWallet.createWalletFromMnemonic();
 ```
 
 ```typescript
@@ -30,7 +30,7 @@ const walletObj = new WalletFactory().createWalletFromMnemonic();
 2. Create a wallet with a user-specified mnemonic phrase
 ```typescript
 const mnemonic = 'olympic cradle tragic crucial exit annual silly cloth scale fine gesture ancient';
-const walletObj = new WalletFactory().createWalletFromMnemonic( mnemonic );
+const walletObj = EtherWallet.createWalletFromMnemonic( mnemonic );
 ```
 ```typescript
 {
@@ -49,7 +49,7 @@ const walletObj = new WalletFactory().createWalletFromMnemonic( mnemonic );
 3. Create a wallet with a user-specified private key
 ```typescript
 const privateKey = "0xf8ba731e3d09ce93ee6256d7393e993be01cd84de044798372c0d1a8ad9b952a";
-const walletObj = new WalletFactory().createWalletFromPrivateKey( privateKey );
+const walletObj = EtherWallet.createWalletFromPrivateKey( privateKey );
 ```
 ```typescript
 {
