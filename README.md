@@ -67,7 +67,7 @@ const walletObj = EtherWallet.createWalletFromPrivateKey( privateKey );
 
 
 
-## Data signature
+## Sign Data
 When signing data, you need to enter:
 - data to be signed, here is a JavaScript object structure
 - wallet private key
@@ -98,7 +98,7 @@ toBeSignedObject.sig = await Web3Signer.signObject( privateKey, toBeSignedObject
 0xa52c1d36c2528a2f460ea5a344481d38455f78c0bd046802a51aefafc275ef1678a09aa8151e49cc2880131ad247fd6d469e1367b16ff08eff3ccfa9d654679f1c
 ```
 
-## Signature verification
+## Validate Signature
 To verify whether the signature of the data belongs to the specified wallet address, you need to enter:
 - data to be signed, here is a JavaScript object structure
 - wallet address
