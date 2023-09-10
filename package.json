@@ -1,6 +1,6 @@
 {
 	"name": "web3id",
-	"version": "1.0.6",
+	"version": "1.0.7",
 	"description": "User identification system based on web3 technology",
 	"keywords": [
 		"web3id",
@@ -38,7 +38,8 @@
 	"dependencies": {
 		"chaintalk-utils": "^1.0.31",
 		"ethers": "^6.7.1",
-		"lodash": "^4.17.21"
+		"lodash": "^4.17.21",
+		"uint8arrays": "^4.0.6"
 	},
 	"author": "ChainTalk, Team.",
 	"homepage": "https://github.com/chaintalk/web3id",

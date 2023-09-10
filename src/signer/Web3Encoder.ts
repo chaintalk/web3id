@@ -1,9 +1,10 @@
 import { TypeUtil } from "chaintalk-utils";
+import { EtherWallet } from "./EtherWallet";
 
 /**
- * 	@class Web3StoreEncoder
+ * 	@class Web3Encoder
  */
-export class Web3StoreEncoder
+export class Web3Encoder
 {
 	/**
 	 *	@param obj		{Record<string, any>}
@@ -21,7 +22,7 @@ export class Web3StoreEncoder
 					return reject( `invalid obj` );
 				}
 
-				let keysToRemove : Array<string> = [ 'sig', 'createdAt', 'updatedAt' ];
+				let keysToRemove : Array<string> = [ 'sig', 'hash', 'createdAt', 'updatedAt' ];
 				if ( Array.isArray( exceptedKeys ) && exceptedKeys.length > 0 )
 				{
 					keysToRemove = Array.from( new Set( [ ...keysToRemove, ...exceptedKeys ] ) );

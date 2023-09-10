@@ -1,7 +1,7 @@
 import { describe, expect } from '@jest/globals';
-import { EtherWallet, Web3StoreValidator } from "../../../src";
+import { EtherWallet, Web3Validator } from "../../../src";
 import { ethers } from "ethers";
-import { Web3StoreSigner } from "../../../src";
+import { Web3Signer } from "../../../src";
 import { TWalletBaseItem } from "../../../src";
 
 
@@ -51,7 +51,7 @@ describe( "Signer", () =>
 				createdAt: new Date(),
 				updatedAt: new Date()
 			};
-			toBeSignedObject.sig = await Web3StoreSigner.signObject( walletObj.privateKey, toBeSignedObject );
+			toBeSignedObject.sig = await Web3Signer.signObject( walletObj.privateKey, toBeSignedObject );
 			expect( toBeSignedObject.sig ).toBeDefined();
 			expect( typeof toBeSignedObject.sig ).toBe( 'string' );
 			expect( toBeSignedObject.sig.length ).toBeGreaterThanOrEqual( 0 );
@@ -61,7 +61,7 @@ describe( "Signer", () =>
 			//
 			//	validate it
 			//
-			const valid = await Web3StoreValidator.validateObject( walletObj.address, toBeSignedObject, toBeSignedObject.sig );
+			const valid = await Web3Validator.validateObject( walletObj.address, toBeSignedObject, toBeSignedObject.sig );
 			expect( valid ).toBeTruthy();
 
 		}, 60 * 10e3 );
@@ -101,7 +101,7 @@ describe( "Signer", () =>
 			const exceptedKeys : Array<string> = [ 'remark' ];
 
 			//	...
-			toBeSignedObject.sig = await Web3StoreSigner.signObject( walletObj.privateKey, toBeSignedObject, exceptedKeys );
+			toBeSignedObject.sig = await Web3Signer.signObject( walletObj.privateKey, toBeSignedObject, exceptedKeys );
 			expect( toBeSignedObject.sig ).toBeDefined();
 			expect( typeof toBeSignedObject.sig ).toBe( 'string' );
 			expect( toBeSignedObject.sig.length ).toBeGreaterThanOrEqual( 0 );
@@ -111,7 +111,7 @@ describe( "Signer", () =>
 			//
 			//	validate it
 			//
-			const valid = await Web3StoreValidator.validateObject( walletObj.address, toBeSignedObject, toBeSignedObject.sig, exceptedKeys );
+			const valid = await Web3Validator.validateObject( walletObj.address, toBeSignedObject, toBeSignedObject.sig, exceptedKeys );
 			expect( valid ).toBeTruthy();
 
 		}, 60 * 10e3 );

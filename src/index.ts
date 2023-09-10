@@ -2,7 +2,12 @@ import { TWalletBaseItem, TWalletItem } from "./models/TWallet";
 export { TWalletBaseItem, TWalletItem };
 
 import { EtherWallet } from "./signer/EtherWallet";
-import { Web3StoreEncoder } from "./signer/Web3StoreEncoder";
-import { Web3StoreSigner } from "./signer/Web3StoreSigner";
-import { Web3StoreValidator } from "./signer/Web3StoreValidator";
-export { EtherWallet, Web3StoreEncoder, Web3StoreSigner, Web3StoreValidator };
+export { EtherWallet };
+
+import { Web3Encoder } from "./signer/Web3Encoder";
+import { Web3Signer } from "./signer/Web3Signer";
+import { Web3Validator } from "./signer/Web3Validator";
+export { Web3Encoder, Web3Signer, Web3Validator };
+
+import { Web3Digester } from "./signer/Web3Digester";
+export { Web3Digester };

@@ -74,7 +74,7 @@ When signing data, you need to enter:
 
 The output is a `signature string`
 
-1. Web3StoreSigner.signObject( privateKey : string | SigningKey, obj : any, exceptedKeys ? : Array&lt;string&gt; ) : Promise&lt;string&gt;
+1. Web3Signer.signObject( privateKey : string | SigningKey, obj : any, exceptedKeys ? : Array&lt;string&gt; ) : Promise&lt;string&gt;
 ```typescript
 let toBeSignedObject = {
 	version : '1.0.0',
@@ -88,9 +88,10 @@ let toBeSignedObject = {
 	createdAt: new Date(),
 	updatedAt: new Date()
 };
+//      .sig, .createdAt, .updatedAt are ignored by default 
 const exceptedKeys : Array<string> = [ 'remark' ];
 const privateKey = walletObj.privateKey;
-toBeSignedObject.sig = await Web3StoreSigner.signObject( privateKey, toBeSignedObject, exceptedKeys );
+toBeSignedObject.sig = await Web3Signer.signObject( privateKey, toBeSignedObject, exceptedKeys );
 ```
 ```
 //  toBeSignedObject.sig
@@ -105,12 +106,14 @@ To verify whether the signature of the data belongs to the specified wallet addr
 
 The output is a `boolean value` indicating whether the data is signed by the private key of the owner of the specified wallet address.
 
-1. Web3StoreValidator.validateObject( signerWalletAddress : string, obj : any, sig : string, exceptedKeys ? : Array&lt;string&gt; ) : Promise&lt;boolean&gt;
+1. Web3Validator.validateObject( signerWalletAddress : string, obj : any, sig : string, exceptedKeys ? : Array&lt;string&gt; ) : Promise&lt;boolean&gt;
 ```typescript
 const walletAddress = walletObj.address;
 const sig = toBeSignedObject.sig;
+
+//      .sig, .createdAt, .updatedAt are ignored by default
 const exceptedKeys : Array<string> = [ 'remark' ];
-const valid = await Web3StoreValidator.validateObject( walletAddress, toBeSignedObject, sig, exceptedKeys );
+const valid = await Web3Validator.validateObject( walletAddress, toBeSignedObject, sig, exceptedKeys );
 ```
 ```typescript
 //      valid

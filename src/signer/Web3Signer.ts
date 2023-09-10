@@ -1,11 +1,12 @@
 import { ethers, SigningKey } from "ethers"
-import { Web3StoreEncoder } from "./Web3StoreEncoder";
+import { Web3Encoder } from "./Web3Encoder";
+import { EtherWallet } from "./EtherWallet";
 
 
 /**
- * 	@class Web3StoreSigner
+ * 	@class Web3Signer
  */
-export class Web3StoreSigner
+export class Web3Signer
 {
 	/**
 	 *	@param privateKey	{ string | SigningKey }
@@ -27,8 +28,12 @@ export class Web3StoreSigner
 				{
 					return reject( `invalid obj` );
 				}
+				if ( ! EtherWallet.isValidAddress( obj.wallet ) )
+				{
+					return reject( `invalid obj.wallet` );
+				}
 
-				const message : string = await Web3StoreEncoder.encode( obj, exceptedKeys );
+				const message : string = await Web3Encoder.encode( obj, exceptedKeys );
 				const sig : string = await this.signMessage( privateKey, message );
 
 				// console.log( `sig : `, sig )
@@ -42,6 +47,8 @@ export class Web3StoreSigner
 			}
 		});
 	}
+
+
 	/**
 	 *	@param privateKey	{ string | SigningKey }
 	 *	@param message		{ string | Uint8Array }
