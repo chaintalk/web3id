@@ -11,9 +11,10 @@ export class Web3StoreValidator
 	 *	@param signerWalletAddress	{string}
 	 *	@param obj			{any}
 	 *	@param sig			{string}
+	 *	@param exceptedKeys		{Array<string>}
 	 *	@returns {boolean}
 	 */
-	public static validateObject( signerWalletAddress : string, obj : any, sig : string ) : Promise<boolean>
+	public static validateObject( signerWalletAddress : string, obj : any, sig : string, exceptedKeys ? : Array<string> ) : Promise<boolean>
 	{
 		return new Promise( async ( resolve, reject ) =>
 		{
@@ -33,7 +34,7 @@ export class Web3StoreValidator
 				}
 
 				//	...
-				const dataToSign : string = await Web3StoreEncoder.encode( obj );
+				const dataToSign : string = await Web3StoreEncoder.encode( obj, exceptedKeys );
 				const isSignatureValid = this.validateMessage( signerWalletAddress, dataToSign, sig );
 
 				resolve( isSignatureValid );

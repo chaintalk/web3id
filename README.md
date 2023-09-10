@@ -1,5 +1,5 @@
 # web3id
-`web3id` is a simple and easy-to-use software development toolkit based on blockchain technology that integrates the creation of web3 signer, data signature, and signature verification.
+`web3id`(web3auth, web3-auth) is a simple and easy-to-use software development toolkit based on blockchain technology that integrates the creation of web3 signer, data signature, and signature verification.
 
 ## How it works
 - Sign the data with the wallet's private key, and you will get a signature string.
@@ -74,7 +74,7 @@ When signing data, you need to enter:
 
 The output is a `signature string`
 
-1. Web3StoreSigner.signObject( privateKey : string | SigningKey, obj : any ) : Promise&lt;string&gt;
+1. Web3StoreSigner.signObject( privateKey : string | SigningKey, obj : any, exceptedKeys ? : Array&lt;string&gt; ) : Promise&lt;string&gt;
 ```typescript
 let toBeSignedObject = {
 	version : '1.0.0',
@@ -88,8 +88,9 @@ let toBeSignedObject = {
 	createdAt: new Date(),
 	updatedAt: new Date()
 };
+const exceptedKeys : Array<string> = [ 'remark' ];
 const privateKey = walletObj.privateKey;
-toBeSignedObject.sig = await Web3StoreSigner.signObject( privateKey, toBeSignedObject );
+toBeSignedObject.sig = await Web3StoreSigner.signObject( privateKey, toBeSignedObject, exceptedKeys );
 ```
 ```
 //  toBeSignedObject.sig
@@ -104,11 +105,12 @@ To verify whether the signature of the data belongs to the specified wallet addr
 
 The output is a `boolean value` indicating whether the data is signed by the private key of the owner of the specified wallet address.
 
-1. Web3StoreValidator.validateObject( signerWalletAddress : string, obj : any, sig : string ) : Promise&lt;boolean&gt;
+1. Web3StoreValidator.validateObject( signerWalletAddress : string, obj : any, sig : string, exceptedKeys ? : Array&lt;string&gt; ) : Promise&lt;boolean&gt;
 ```typescript
 const walletAddress = walletObj.address;
 const sig = toBeSignedObject.sig;
-const valid = await Web3StoreValidator.validateObject( walletAddress, toBeSignedObject, sig );
+const exceptedKeys : Array<string> = [ 'remark' ];
+const valid = await Web3StoreValidator.validateObject( walletAddress, toBeSignedObject, sig, exceptedKeys );
 ```
 ```typescript
 //      valid

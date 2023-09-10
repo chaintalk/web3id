@@ -10,9 +10,10 @@ export class Web3StoreSigner
 	/**
 	 *	@param privateKey	{ string | SigningKey }
 	 *	@param obj		{ any }
+	 *	@param exceptedKeys	{ Array<string> }
 	 *	@returns {Promise<string>}
 	 */
-	public static signObject( privateKey : string | SigningKey, obj : any ) : Promise<string>
+	public static signObject( privateKey : string | SigningKey, obj : any, exceptedKeys ? : Array<string> ) : Promise<string>
 	{
 		return new Promise( async ( resolve, reject ) =>
 		{
@@ -27,7 +28,7 @@ export class Web3StoreSigner
 					return reject( `invalid obj` );
 				}
 
-				const message : string = await Web3StoreEncoder.encode( obj );
+				const message : string = await Web3StoreEncoder.encode( obj, exceptedKeys );
 				const sig : string = await this.signMessage( privateKey, message );
 
 				// console.log( `sig : `, sig )
