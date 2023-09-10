@@ -41,7 +41,6 @@ describe( "Digester", () =>
 				name : `Sam`,
 				avatar : 'https://avatars.githubusercontent.com/u/142800322?v=4',
 				remark : 'no remark',
-				nonce : 1,
 				timestamp : new Date().getTime(),
 				hash : `will be ignored`,
 				createdAt: new Date(),

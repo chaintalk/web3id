@@ -27,10 +27,6 @@ export class Web3Digester
 				{
 					return reject( `invalid obj.wallet` );
 				}
-				if ( ! TypeUtil.isNumeric( obj.nonce ) || obj.nonce <= 0 )
-				{
-					return reject( `invalid obj.nonce` );
-				}
 				if ( ! TypeUtil.isNumeric( obj.timestamp ) || obj.timestamp <= 0 )
 				{
 					return reject( `invalid obj.timestamp` );
