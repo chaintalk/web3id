@@ -37,7 +37,7 @@ export class Web3Digester
 				const keccakHash : string = keccak256( arrayBuffer );
 
 				//	will return a string starting with 0x and having a length of 66
-				resolve( keccakHash );
+				resolve( keccakHash.trim().toLowerCase() );
 			}
 			catch ( err )
 			{
