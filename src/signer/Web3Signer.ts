@@ -36,8 +36,6 @@ export class Web3Signer
 				const message : string = await Web3Encoder.encode( obj, exceptedKeys );
 				const sig : string = await this.signMessage( privateKey, message );
 
-				// console.log( `sig : `, sig )
-
 				//	...
 				resolve( sig );
 			}
@@ -70,10 +68,10 @@ export class Web3Signer
 				}
 
 				const signWallet = new ethers.Wallet( privateKey );
-				const sig = await signWallet.signMessage( message );
+				const sig : string = await signWallet.signMessage( message );
 
 				//	...
-				resolve( sig );
+				resolve( sig.trim().toLowerCase() );
 			}
 			catch ( err )
 			{
