@@ -239,11 +239,11 @@ describe( "EtherWallet", () =>
 
 	describe( "Create New Address", () =>
 	{
-		it( "should create a new adderss from a specified HD wallet", async () =>
+		it( "should create a new address from a specified HD wallet", async () =>
 		{
 			const mnemonic = 'olympic cradle tragic crucial exit annual silly cloth scale fine gesture ancient';
 			const firstAddress = '0xC8F60EaF5988aC37a2963aC5Fabe97f709d6b357';
-			const secondAdderss = '0x75BaAEc1C767A6A6F076dEEeA665F8642973dafA';
+			const secondAddress = '0x75BaAEc1C767A6A6F076dEEeA665F8642973dafA';
 			const thirdAddress = '0xE05eCB996dA9D59315d569D65C93Af68bA9AA4a5';
 
 			const walletObj = EtherWallet.createWalletFromMnemonic( mnemonic );
@@ -252,7 +252,7 @@ describe( "EtherWallet", () =>
 			expect( walletObj.path ).toBe( ethers.defaultPath );
 
 			const secondWalletObj = EtherWallet.createNewAddress( walletObj );
-			expect( secondWalletObj.address ).toBe( secondAdderss );
+			expect( secondWalletObj.address ).toBe( secondAddress );
 			expect( secondWalletObj.index ).toBe( 1 );
 			expect( secondWalletObj.path ).toBe( ethers.getIndexedAccountPath( 1 ) );
 
@@ -276,5 +276,37 @@ describe( "EtherWallet", () =>
 				expect( error.message ).toEqual( "wallet not specified" );
 			}
 		} );
+
+		it( "should create many new addresses by increasing wallet.index", async () =>
+		{
+			const mnemonic = 'olympic cradle tragic crucial exit annual silly cloth scale fine gesture ancient';
+			const walletObj = EtherWallet.createWalletFromMnemonic( mnemonic );
+			expect( walletObj ).toBeDefined();
+			expect( walletObj.index ).toBe( 0 );
+			expect( walletObj.path ).toBe( ethers.defaultPath );
+
+			let walletObjNew = walletObj;
+			let walletAddresses : Array<string> = [ walletObjNew.address ];
+			for ( let i = 0; i < 100; i ++ )
+			{
+				walletObjNew = EtherWallet.createNewAddress( walletObjNew );
+				expect( walletAddresses.includes( walletObjNew.address ) ).toBeFalsy();
+
+				//	...
+				walletAddresses.push( walletObjNew.address );
+				//console.log( walletObjNew );
+				//	{
+				//       isHD: true,
+				//       mnemonic: 'olympic cradle tragic crucial exit annual silly cloth scale fine gesture ancient',
+				//       password: '',
+				//       address: '0xE6f1640FD02268dE0037157d29274bA4fE0e19fB',
+				//       publicKey: '0x03cf313baa450042caa56d8e9c85ea7f1477c715b80fd6cd129fc8aacb9a42ee70',
+				//       privateKey: '0xa4c07027ea7a07d2a39249724cb60344290920045a20d3142fbce60ec14ebbf3',
+				//       index: 7,
+				//       path: "m/44'/60'/0'/0/7"
+				//     }
+			}
+		} );
+
 	} )
 } );
