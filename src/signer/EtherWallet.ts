@@ -361,4 +361,13 @@ export class EtherWallet
 			path : walletObj.path
 		}
 	}
+
+	/**
+	 *	@param sig	{string}
+	 *	@returns {boolean}
+	 */
+	public static isValidSignatureString( sig : string ) : boolean
+	{
+		return TypeUtil.isNotEmptyString( sig ) && 132 === sig.length && /^0x[0-9a-f]{130}$/.test( sig );
+	}
 }
